@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Internal SNS : our</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= javascript_include_tag webpack_bundle_path('user'), defer: 'defer' %>
+</head>
+
+<body>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+  <%= yield %>
+</body>
+</html>
+
+<%# <body class="mdl-color--grey-100 mdl-color-text--grey-700 mdl-base <%= body_classes.join(' ') %1>"> %>
+
+<%#     <div id="flash-notifications"> %>
+<%#     <% [:notice, :error, :alert].each do |t| %>
+<%#       unless flash[t].nil? %>
+<%#         concat render partial: 'shared/flash_notification', locals: { message: flash[t], type: t } %>
+<%#       end %>
+<%#     end %1> %>
+<%#     </div> %>
+
+<%# </body> %>
