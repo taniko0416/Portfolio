@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/my_image
+      - image: circleci/ruby:2.6
     steps:
       - run:
           command: |
@@ -10,28 +10,28 @@ jobs:
   
   deploy:
     docker:
-      - image: circleci/my_image
+      - image: circleci/ruby:2.6
         # aws_auth:
         #   aws_access_key_id: AKIAQWERVA
         #   aws_secret_access_key: $ECR_AWS_SECRET_ACCESS_KEY
-    working_directory: ~/portfolio
+    # working_directory: ~/portfolio
     steps:
-      - add_ssh_keys:
-          fingerprints: "XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX"
-      - run:
-          name: Disable SSH StrictHostKeyChecking
-          command: |
-            cat <<EOF >> $HOME/.ssh/config
-            Host *
-              StrictHostKeyChecking no
-            EOF
+      # - add_ssh_keys:
+          # fingerprints: "XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX"
+      # - run:
+      #     name: Disable SSH StrictHostKeyChecking
+      #     command: |
+      #       cat <<EOF >> $HOME/.ssh/config
+      #       Host *
+      #         StrictHostKeyChecking no
+      #       EOF
       - checkout
       - run:
           name: Install system packages
           command: |
             sudo apt-get update
-            sudo apt-get install -y                  #libmysqlclient-dev libmagickwand-dev imagemagick
-            gem install bundler -v                   #2.0.2   
+            # sudo apt-get install -y       #libmysqlclient-dev libmagickwand-dev imagemagick
+            gem install bundler -v 1.17.2
       - restore_cache: #キャッシュの利用
           keys:
             - gem-cache-v1-{{ arch }}-{{ .Branch }}-{{ checksum "webapp/Gemfile.lock" }}
@@ -50,5 +50,4 @@ jobs:
           name: Deploy to staging
           command: |
             cd webapp
-            bundle exec cap staging deploy
-            
+            # bundle exec cap staging deploy
