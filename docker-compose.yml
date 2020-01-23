@@ -10,7 +10,9 @@ services:
       - db-data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: our
-      MYSQL_ROOT_PASSWORD: fas32wrn239fn42f2
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: our_user
+      MYSQL_PASSWORD: fas32wrn239fn42f2
       TZ: Asia/Tokyo
 
   webpack:
