@@ -12,3 +12,5 @@ COPY Gemfile /webapp/Gemfile
 COPY Gemfile.lock /webapp/Gemfile.lock
 RUN bundle install
 COPY . /webapp
+
+RUN mkdir -p tmp/sockets
