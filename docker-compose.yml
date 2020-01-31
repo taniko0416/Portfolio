@@ -27,9 +27,7 @@ services:
     build: 
       context: .
       dockerfile: webapp/Dockerfile
-    command: > 
-            sh -c "rm -f /tmp/pids/server.pid && 
-            bundle exec puma -C config/puma.rb"
+    command: bundle exec puma -C config/puma.rb
     volumes:
       - ./webapp:/webapp
       - public-data:/webapp/public
@@ -48,7 +46,7 @@ services:
       context: ./
       dockerfile: ./webapp/containers/nginx/Dockerfile
     volumes:
-      - ./webapp:/webapp
+      # - ./webapp:/webapp
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
     ports:
@@ -59,6 +57,7 @@ services:
 volumes:
   public-data:
   tmp-data:
+    driver: "local"
   log-data:
   # db-data:
   #   driver: local
