@@ -1,2 +1,4 @@
 node_modules
 .DS_Store
+# !/tmp/pid/.keep
+# !/tmp/sockets/.keep

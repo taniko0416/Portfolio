@@ -1,31 +1,35 @@
 version: '3'
 
 services:
-  db:
-    image: mariadb:10.4
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    ports:
-      - "3306:3306"
-    volumes:
-      - db-data:/var/lib/mysql
-    environment:
-      MYSQL_DATABASE: our
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: our_user
-      MYSQL_PASSWORD: fas32wrn239fn42f2
-      TZ: Asia/Tokyo
+  # db:
+  #   image: mariadb:10.4
+  #   command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - db-data:/var/lib/mysql
+  #   environment:
+  #     MYSQL_DATABASE: our
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_USER: our_user
+  #     MYSQL_PASSWORD: fas32wrn239fn42f2
+  #     TZ: Asia/Tokyo
 
-  webpack:
-    build: ./webapp
-    command: sh -c "npm install && npm run dev"
-    ports:
-      - "3003:3003"
-    volumes:
-      - ./webapp:/webapp
+  # webpack:
+  #   build: ./webapp
+  #   command: sh -c "npm install && npm run dev"
+  #   ports:
+  #     - "3003:3003"
+  #   volumes:
+  #     - ./webapp:/webapp
 
   webapp:
-    build: ./webapp
-    command: sh -c "rm -f ./tmp/pids/server.pid && bundle exec puma"
+    build: 
+      context: .
+      dockerfile: webapp/Dockerfile
+    command: > 
+            sh -c "rm -f /tmp/pids/server.pid && 
+            bundle exec puma -C config/puma.rb"
     volumes:
       - ./webapp:/webapp
       - public-data:/webapp/public
@@ -35,19 +39,20 @@ services:
     #   - "3000:3000"
     environment:
       TZ: Asia/Tokyo
-    depends_on:
-      - db
-      - webpack
+    # depends_on:
+    #   - db
+    #   - webpack
   
   web:
     build:
-      context: .
+      context: ./
       dockerfile: ./webapp/containers/nginx/Dockerfile
     volumes:
+      - ./webapp:/webapp
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
     ports:
-      - 80:80
+      - 8080:80
     depends_on:
       - webapp
 
@@ -55,5 +60,5 @@ volumes:
   public-data:
   tmp-data:
   log-data:
-  db-data:
-    driver: local
+  # db-data:
+  #   driver: local
