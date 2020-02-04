@@ -39,5 +39,11 @@ test:
 production:
   <<: *default
   database: webapp_production
-  username: webapp
+  username: webapp_user
   password: <%= ENV['WEBAPP_DATABASE_PASSWORD'] %>
+
+# staging:
+#   <<: *default
+#   database: webapp_production
+#   username: webapp
+#   password: <%= ENV['WEBAPP_DATABASE_PASSWORD'] %>

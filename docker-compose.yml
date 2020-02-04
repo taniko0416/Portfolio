@@ -16,9 +16,13 @@ services:
       TZ: Asia/Tokyo
 
   webpack:
+    # for local
     build: 
       context: .
       dockerfile: webapp/Dockerfile
+
+    # for deploy
+    # image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio_webpack
     command: sh -c "npm install && npm run dev"
     ports:
       - "3003:3003"
@@ -26,25 +30,37 @@ services:
       - ./webapp:/webapp
 
   webapp:
+    # for local
     build: 
       context: .
       dockerfile: webapp/Dockerfile
+     
+    # for deploy
+    # image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio_webapp
+    
     command: bundle exec puma -C config/puma.rb
     volumes:
       - ./webapp:/webapp
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
-      - log-data:/webapp/log
+      - log-data:/webapp/log 
     environment:
       TZ: Asia/Tokyo
+      RAILS_ENV: production
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
     depends_on:
       - db
       - webpack
+    tty: true
+    stdin_open: true
   
   web:
     build:
       context: ./
       dockerfile: ./webapp/containers/nginx/Dockerfile
+    
+    # for deploy
+    # image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio_web
     volumes:
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
@@ -58,4 +74,4 @@ volumes:
   tmp-data:
   log-data:
   db-data:
-    driver: local
+    # driver: local
