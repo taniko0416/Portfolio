@@ -17,7 +17,7 @@ threads min_threads_count, max_threads_count
 environment ENV.fetch("RAILS_ENV") { "development" }
 
 # Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
+pidfile ENV.fetch("PIDFILE") { "/webapp/tmp/pids/server.pid" }
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
@@ -37,6 +37,5 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
-# app_root = File.expand_path("../..", __FILE__)
-bind "unix://webapp/tmp/sockets/puma.sock"
-stdout_redirect "webapp/log/puma.stdout.log", "webapp/log/puma.stderr.log", true
+bind "unix:///webapp/tmp/sockets/puma.sock"
+stdout_redirect "/webapp/log/puma.stdout.log", "/webapp/log/puma.stderr.log", true

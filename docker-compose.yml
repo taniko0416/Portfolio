@@ -1,66 +1,85 @@
 version: '3'
 
 services:
-  db:
-    image: mariadb:10.4
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-    ports:
-      - "3306:3306"
-    volumes:
-      - db-data:/var/lib/mysql
-    environment:
-      MYSQL_DATABASE: our
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: our_user
-      MYSQL_PASSWORD: fas32wrn239fn42f2
-      TZ: Asia/Tokyo
+#   db:
+#     # for local-----------------------------------------------------------------
+#     image: mariadb:10.4
+#     # for local-----------------------------------------------------------------
 
-  webpack:
-    # for local
-    build: 
-      context: .
-      dockerfile: webapp/Dockerfile
+#     # for deploy-----------------------------------------------------------------
+#     # image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/mariadb_portfolio:latest
+#     # for deploy-----------------------------------------------------------------
 
-    # for deploy
-    # image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio_webpack
-    command: sh -c "npm install && npm run dev"
-    ports:
-      - "3003:3003"
-    volumes:
-      - ./webapp:/webapp
+#     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+#     ports:
+#       - "3306:3306"
+#     volumes:
+#       - db-data:/var/lib/mysql
+#     environment:
+#       MYSQL_DATABASE: our
+#       MYSQL_USER: our_user
+#       MYSQL_ROOT_PASSWORD: root
+#       MYSQL_PASSWORD: fas32wrn239fn42f2
+#       TZ: Asia/Tokyo
+
+#   webpack:
+#     # for local-----------------------------------------------------------------
+#     build: 
+#       context: .
+#       dockerfile: webapp/Dockerfile
+#     command: sh -c "npm install && npm run dev"
+#     # for local-----------------------------------------------------------------
+
+#     # for deploy-----------------------------------------------------------------
+#     # image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/webpack_portfplio:latest
+#     # command: sh -c "npm install && npm run build"
+#     # for deploy-----------------------------------------------------------------
+    
+#     ports:
+#       - "3003:3003"
+#     volumes:
+#       - ./webapp:/webapp
 
   webapp:
-    # for local
+    # for local-----------------------------------------------------------------
     build: 
       context: .
       dockerfile: webapp/Dockerfile
-     
-    # for deploy
-    # image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio_webapp
+    # for local-----------------------------------------------------------------
     
-    command: bundle exec puma -C config/puma.rb
+#       # for deploy-----------------------------------------------------------------
+#     # image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/webapp_portfolio:latest
+#     # for deploy-----------------------------------------------------------------
+    command: sh -c "cd webapp && bundle exec puma -C config/puma.rb"
     volumes:
       - ./webapp:/webapp
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
       - log-data:/webapp/log 
-    environment:
-      TZ: Asia/Tokyo
-      RAILS_ENV: production
-      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
-    depends_on:
-      - db
-      - webpack
+#     environment:
+#       TZ: Asia/Tokyo
+#       # RAILS_ENV: production
+#       SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+#     depends_on:
+#       - db
+#       - webpack
+#     links:
+#       - db
+#       - webpack
     tty: true
     stdin_open: true
   
   web:
+    # for local-----------------------------------------------------------------
     build:
       context: ./
       dockerfile: ./webapp/containers/nginx/Dockerfile
+    # for local-----------------------------------------------------------------
+
+    # for deploy-----------------------------------------------------------------
+    # image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/web_portfolio:latest
+    # for deploy-----------------------------------------------------------------
     
-    # for deploy
-    # image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio_web
     volumes:
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
@@ -74,4 +93,4 @@ volumes:
   tmp-data:
   log-data:
   db-data:
-    # driver: local
+#     # driver: local
