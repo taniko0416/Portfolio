@@ -1,0 +1,32 @@
+body.home.show {
+  .account {
+    background-color: white;
+
+    .account-info {
+
+      .account-info__top-image {
+        width: 100%;
+        height: 200px;
+
+        background-image: url("https://pbs.twimg.com/profile_banners/2588566645/1478466334/1500x500");
+        background-size: cover;
+      }
+
+      .account-info__container {
+        padding: 1rem 1.5rem;
+
+        .account-info__basics {
+          margin-bottom: 0.5rem;
+
+          .account-info__name {
+            font-size: 1.5rem;
+            font-weight: $weight-bold;
+          }
+          .account-info__id {
+            color: $grey;
+          }
+        }
+      }
+    }
+  }
+}
