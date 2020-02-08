@@ -1,4 +1,3 @@
-// include one file
-// @import "common";
-// include whole directory
-// @import "common/path/to/cssfiles/*.scss";
+@import "./variables/_variables.scss";
+@import "./layouts/application.scss";
+@import "./members/main.scss";
