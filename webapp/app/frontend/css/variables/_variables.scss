@@ -4,3 +4,15 @@ $contents-bg-color: #f2f2f2;
 
 // borders
 $our-border: 1px solid $grey-lighter;
+
+// colors
+$palettes: (
+  icon: (
+    base: mediumpurple,
+    text: azure
+  )
+);
+
+@function palettes($key, $tone: base) {
+  @return map-get( map-get($palettes, $key), $tone);
+}
