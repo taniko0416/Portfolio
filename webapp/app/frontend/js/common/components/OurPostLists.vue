@@ -1,8 +1,6 @@
 <template>
   <div>
 
-    <our-post-modal></our-post-modal>
-
     <!-- <a :href="'https://news.ycombinator.com/user?id=' + item.author" v-text="item.author"></a> | -->
     <div v-for="item in list" class="our-post-lists__post-wrapper">
 
@@ -33,14 +31,12 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
-import OurPostModal from 'OurCommonPath/components/OurPostModal.vue';
 import Model from 'OurCommonPath/utilities/model.jsx';
 
 // TODO: スマホ対応、無限スクロール
 export default {
   components: {
     InfiniteLoading,
-    OurPostModal,
   },
   data() {
     return {

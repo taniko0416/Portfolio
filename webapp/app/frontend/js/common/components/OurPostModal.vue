@@ -1,37 +1,25 @@
 <template>
   <section>
+    <form action="">
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">投稿する</p>
+        </header>
 
-    <button class="button is-primary is-medium" @click="isComponentModalActive = true">!Post!</button>
+        <section class="modal-card-body">
+          <b-field label="">
+            <b-input v-model="postContent" maxlength="1000" type="textarea" required></b-input>
+          </b-field>
+        </section>
 
-    <b-modal :active.sync="isComponentModalActive"
-             has-modal-card
-             trap-focus
-             aria-role="dialog"
-             aria-modal>
-
-      <form action="">
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">投稿する</p>
-          </header>
-
-          <section class="modal-card-body">
-            <b-field label="">
-              <b-input v-model="postContent" maxlength="1000" type="textarea" required></b-input>
-            </b-field>
-          </section>
-
-          <footer class="modal-card-foot">
-            <div class="buttons">
-              <button type="button" @click="closeModal()" class="button is-rounded is-success is-inverted">Close</button>
-              <button type="button" @click="createPost()" class="button is-rounded is-success">Submit</button>
-            </div>
-          </footer>
-        </div>
-      </form>
-
-    </b-modal>
-
+        <footer class="modal-card-foot">
+          <div class="buttons">
+            <button type="button" @click="$parent.close()" class="button is-rounded is-success is-inverted">Close</button>
+            <button type="button" @click="createPost()" class="button is-rounded is-success">Submit</button>
+          </div>
+        </footer>
+      </div>
+    </form>
   </section>
 </template>
 
@@ -41,7 +29,6 @@ import Model from 'OurCommonPath/utilities/model.jsx';
 export default {
   data() {
     return {
-      isComponentModalActive: false,
       postContent: null,
     }
   },
@@ -50,12 +37,9 @@ export default {
       const params = { content: this.postContent };
       Model.post('/member/posts', params).then( ({ data }) => {
         alert("投稿しましたん。");
-        // TODO: 投稿一覧を更新する.
+        // TODO: 投稿一覧を更新する. -> store?
       });
-      this.closeModal();
-    },
-    closeModal() {
-      this.isComponentModalActive = false;
+      this.$parent.close();
     },
   },
 }
