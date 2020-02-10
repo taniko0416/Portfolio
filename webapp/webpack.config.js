@@ -1,8 +1,6 @@
 /** TODO
     - imitate liiga gulp
     - clean package.json
-    - setting dev server
-    -ok read every official tutorial
 */
 const path = require('path');
 const webpack = require('webpack');
@@ -59,7 +57,9 @@ module.exports = {
   },
   resolve: {
     alias: {
-      vue$: 'vue/dist/vue.esm.js'
+      vue$: 'vue/dist/vue.esm.js',
+      OurCommonPath: path.join(__dirname, 'app/frontend/js/common'),
+      ScssVariables: path.join(__dirname, 'app/frontend/css/variables')
     },
   },
   plugins: [

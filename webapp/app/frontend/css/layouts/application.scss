@@ -1,0 +1,17 @@
+body>div.columns.are-fixed-contents {
+  $fixed-contents-height: calc(100vh - 3.25rem);
+  height: $fixed-contents-height;
+
+  &>div.column {
+    overflow-y: auto;
+
+    .menu {
+      min-height: $fixed-contents-height;
+      padding: 1.5rem;
+    }
+
+    &.main-contents {
+      background-color: $contents-bg-color;
+    }
+  }
+}
