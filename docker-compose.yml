@@ -10,8 +10,8 @@ services:
       - db-data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: our
-      MYSQL_USER: our_user
       MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: our_user
       MYSQL_PASSWORD: fas32wrn239fn42f2
       TZ: Asia/Tokyo
 
@@ -34,13 +34,10 @@ services:
       - ./webapp:/webapp
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
-      - log-data:/webapp/log 
+      - log-data:/webapp/log
     environment:
       TZ: Asia/Tokyo
     depends_on:
-      - db
-      - webpack
-    links:
       - db
       - webpack
     tty: true

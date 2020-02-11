@@ -4,11 +4,10 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: our_user
   password: fas32wrn239fn42f2
-
+  host: db
 
 development:
   <<: *default
-  host: db
   database: our
 
 # Warning: The database defined as "test" will be erased and
@@ -43,8 +42,8 @@ production:
   username: webapp_user
   password: <%= ENV['WEBAPP_DATABASE_PASSWORD'] %>
 
-# staging:
-#   <<: *default
-#   database: webapp_production
-#   username: webapp
-#   password: <%= ENV['WEBAPP_DATABASE_PASSWORD'] %>
+staging:
+  <<: *default
+  database: webapp_staging
+  username: webapp
+  password: <%= ENV['WEBAPP_DATABASE_PASSWORD'] %>
