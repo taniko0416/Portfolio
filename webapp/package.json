@@ -33,6 +33,7 @@
     "webpack-dev-server": "^3.10.1"
   },
   "scripts": {
-    "dev": "webpack-dev-server --progress --color"
+    "dev": "webpack-dev-server --progress --color",
+    "build": "webpack"
   }
 }
