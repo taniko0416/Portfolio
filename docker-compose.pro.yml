@@ -20,13 +20,11 @@ services:
     command: sh -c "cd / && npm install && npm run dev"
     ports:
       - "3003:3003"
-    # volumes:
-    #   - ./webapp:/webapp
 
   webapp:
     image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/webapp_portfolio:latest
-    entrypoint: /usr/local/bundle/bin/puma
-    command: -C config/puma.rb
+    # entrypoint: /usr/local/bundle/bin/puma
+    # command: -C config/puma.rb
     volumes:
       - public-data:/webapp/public
       - tmp-data:/webapp/tmp
@@ -38,9 +36,6 @@ services:
     depends_on:
       - db
       - webpack
-    # links:
-    #   - db
-    #   - webpack
     tty: true
     stdin_open: true
   
