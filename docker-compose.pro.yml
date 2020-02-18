@@ -17,7 +17,7 @@ services:
 
   webpack:
     image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/webpack_portfplio:latest
-    command: sh -c "cd / && npm install && npm run dev"
+    command: sh -c "npm install && npm run build"
     ports:
       - "3003:3003"
 
