@@ -6,7 +6,6 @@ const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const ManifestPlugin = require('webpack-manifest-plugin')
 
 module.exports = {
   mode: 'production',
@@ -66,7 +65,6 @@ module.exports = {
   plugins: [
     new webpack.NamedModulesPlugin(),
     new VueLoaderPlugin(),
-    // new ManifestPlugin(),
   ],
   performance: {
     hints: false
