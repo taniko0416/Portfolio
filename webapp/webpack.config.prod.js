@@ -13,7 +13,7 @@ module.exports = {
     user: './app/frontend/js/user.jsx'
   },
   output: {
-    path: path.join(__dirname, 'app/javascripts/build/'),
+    path: path.join(__dirname, 'app/assets/javascripts/build'),
     filename: '[name].js',
     publicPath: '/static/',
   },
