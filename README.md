@@ -46,3 +46,10 @@ docker-compose ps
 # 名前を指定してコンテナに入る
 docker exec -it internal_sns_webapp_1 bash
 ```
+
+### deploy手順
+- testインスタンにて動作の確認
+- コンテナをインスタンスにて起動
+- DBのIPを調べる
+- webappのDB接続先をIPへ変更
+- pumaの起動
