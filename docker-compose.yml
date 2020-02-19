@@ -16,26 +16,48 @@ services:
       TZ: Asia/Tokyo
 
   webpack:
-    build: ./webapp
-    command: sh -c "npm install && npm run dev"
+    build: 
+      context: .
+      dockerfile: webapp/Dockerfile
+    command: sh -c "npm install && npm run dev"  
     ports:
       - "3003:3003"
     volumes:
       - ./webapp:/webapp
 
   webapp:
-    build: ./webapp
-    command: sh -c "rm -f ./tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    build: 
+      context: .
+      dockerfile: webapp/Dockerfile
+    entrypoint: /usr/local/bundle/bin/puma
     volumes:
       - ./webapp:/webapp
-    ports:
-      - "3000:3000"
+      - public-data:/webapp/public
+      - tmp-data:/webapp/tmp
+      - log-data:/webapp/log
     environment:
       TZ: Asia/Tokyo
     depends_on:
       - db
       - webpack
+    tty: true
+    stdin_open: true
+  
+  web:
+    build:
+      context: ./
+      dockerfile: ./webapp/containers/nginx/Dockerfile
+    volumes:
+      - public-data:/webapp/public
+      - tmp-data:/webapp/tmp
+    ports:
+      - 80:80
+    depends_on:
+      - webapp
 
 volumes:
+  public-data:
+  tmp-data:
+  log-data:
   db-data:
-    driver: local
+  
