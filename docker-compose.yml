@@ -19,8 +19,7 @@ services:
     build: 
       context: .
       dockerfile: webapp/Dockerfile
-    # command: sh -c "npm install && npm run dev"  
-    command: sh -c "npm install && npm run build"
+    command: sh -c "npm install && npm run dev"  
     ports:
       - "3003:3003"
     volumes:
@@ -61,3 +60,4 @@ volumes:
   tmp-data:
   log-data:
   db-data:
+  

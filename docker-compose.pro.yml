@@ -15,11 +15,12 @@ services:
       MYSQL_PASSWORD: fas32wrn239fn42f2
       TZ: Asia/Tokyo
 
-  webpack:
-    image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/webpack_portfplio:latest
-    command: sh -c "npm install && npm run build"
-    ports:
-      - "3003:3003"
+# 不明のエラーがあるため本番ではWebpackは止めています
+  # webpack:
+  #   image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/webpack_portfplio:latest
+  #   command: sh -c "npm install && npm run build"
+  #   ports:
+  #     - "3003:3003"
 
   webapp:
     image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/webapp_portfolio:latest
@@ -35,7 +36,7 @@ services:
       # SECRET_KEY_BASE: ${SECRET_KEY_BASE}
     depends_on:
       - db
-      - webpack
+      # - webpack
     tty: true
     stdin_open: true
   

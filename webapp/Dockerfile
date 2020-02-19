@@ -6,9 +6,9 @@ RUN curl -SL https://deb.nodesource.com/setup_12.x | bash && \
     apt install -y nodejs vim
 
 RUN mkdir -p webapp && \
-    mkdir -p tmp/pids && \
-    mkdir -p tmp/sockets && \
-    mkdir -p tmp/public
+    mkdir -p /webapp/tmp/pids && \
+    mkdir -p /webapp/tmp/sockets && \
+    mkdir -p webapp/tmp/public
     
 COPY webapp/package.json package.json
 COPY webapp/Gemfile Gemfile
