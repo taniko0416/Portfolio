@@ -39,7 +39,7 @@ services:
     tty: true
     stdin_open: true
   
-  web:
+  nginx:
     image: 111784030138.dkr.ecr.ap-northeast-1.amazonaws.com/web_portfolio:latest
     volumes:
       - public-data:/webapp/public

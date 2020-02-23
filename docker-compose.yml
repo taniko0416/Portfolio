@@ -43,7 +43,7 @@ services:
     tty: true
     stdin_open: true
   
-  web:
+  nginx:
     build:
       context: ./
       dockerfile: ./webapp/containers/nginx/Dockerfile
