@@ -29,7 +29,7 @@ services:
     build: 
       context: .
       dockerfile: webapp/Dockerfile
-    entrypoint: /usr/local/bundle/bin/puma
+    command: sh -c "puma -C config/puma.rb" 
     volumes:
       - ./webapp:/webapp
       - public-data:/webapp/public
@@ -43,7 +43,7 @@ services:
     tty: true
     stdin_open: true
   
-  web:
+  nginx:
     build:
       context: ./
       dockerfile: ./webapp/containers/nginx/Dockerfile

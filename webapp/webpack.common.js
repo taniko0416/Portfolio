@@ -1,19 +1,14 @@
-/** TODO
-    - imitate liiga gulp
-    - clean package.json
-*/
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
-  mode: 'development',
   entry: {
     user: './app/frontend/js/user.jsx'
   },
   output: {
-    path: path.join(__dirname, 'app/assets/javascripts/build/'),
+    path: path.join(__dirname, 'app/assets/javascripts/build'),
     filename: '[name].js',
     publicPath: '/static/',
   },
@@ -66,11 +61,4 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new VueLoaderPlugin(),
   ],
-  devServer: {
-    host: '0.0.0.0',
-    port: 3003,
-    hot: true,
-    contentBase: path.join(__dirname, 'app/frontend'),
-    watchContentBase: true,
-  }
 };
