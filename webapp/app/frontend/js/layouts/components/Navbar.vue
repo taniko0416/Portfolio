@@ -19,8 +19,9 @@
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
-          <a class="button is-primary"><strong>Sign up</strong></a>
+          <a href="/users/sign_up" class="button is-primary"><strong>Sign up</strong></a>
           <a href="/users/sign_in" class="button is-light">Log in</a>
+          <a href="/users/sign_out" class="button is-light">Log out</a>
         </div>
       </b-navbar-item>
     </template>
