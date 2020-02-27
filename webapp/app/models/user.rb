@@ -3,5 +3,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable, :timeoutable, :lockable, :trackable
 
-  belongs_to :role, polymorphic: true, dependent: :destroy
+  belongs_to :role, polymorphic: true, dependent: :destroy, optional: true
+
+
+  before_create :set_default_role_type
+  
+  private
+  def set_default_role_type
+    self.role_type =  "Member"
+    self.role_id =  1
+  end
 end
