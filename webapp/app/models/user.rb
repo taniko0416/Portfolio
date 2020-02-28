@@ -5,7 +5,8 @@ class User < ApplicationRecord
 
   belongs_to :role, polymorphic: true, dependent: :destroy, optional: true
   has_one :member
-
+  accepts_nested_attributes_for :member
+  
   before_create :set_default_role_type
   
   private

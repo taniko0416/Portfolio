@@ -8,15 +8,12 @@
       <div class="account-info__container">
         <%# account icon image %>
         <%# <div>account icon</div> %>
-
         <div class="account-info__basics">
-          <div class="account-info__name">Kobashiri Tora</div>
-          <div class="account-info__id">@tora3</div>
+          <div class="account-info__name"><%= @member.name %></div>
+          <div class="account-info__id">@<%= @member.slug %></div>
         </div>
         <div>
-          OURのエンジニア。普段はハイクラス向けの求人情報掲載ベンチャーで勤務しています。
-          趣味はフリーロッククライミングとスカイダイビングです。
-          愛読書: 影響力の武器, 実践Vimなど。良書があれば是非教えてください。
+          <%= @member.intro %>
         </div>
       </div>
     </div>
