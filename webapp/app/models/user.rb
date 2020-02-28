@@ -4,7 +4,7 @@ class User < ApplicationRecord
          :confirmable, :timeoutable, :lockable, :trackable
 
   belongs_to :role, polymorphic: true, dependent: :destroy, optional: true
-
+  has_one :member
 
   before_create :set_default_role_type
   
@@ -13,4 +13,5 @@ class User < ApplicationRecord
     self.role_type =  "Member"
     self.role_id =  1
   end
+
 end
