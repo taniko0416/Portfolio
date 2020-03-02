@@ -18,9 +18,13 @@
   <p class="alert"><%= alert %></p>
 
   <header id="header">
+  <% if user_signed_in? %>
+    <navbar_login></navbar_login>
+  <% else %>
     <navbar></navbar>
   </header>
-
+  <% end %>
+  
   <div class="columns is-gapless are-fixed-contents">
     <div class="column is-2">
       <aside id="sidemenu">
