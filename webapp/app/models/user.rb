@@ -1,11 +1,13 @@
 class User < ApplicationRecord
+  has_one :member
+  accepts_nested_attributes_for :member
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :timeoutable, :lockable, :trackable
 
-  belongs_to :role, polymorphic: true, dependent: :destroy, optional: true
-  has_one :member
-  accepts_nested_attributes_for :member
+  # belongs_to :role, polymorphic: true, dependent: :destroy, optional: true
+
   
   before_create :set_default_role_type
   
