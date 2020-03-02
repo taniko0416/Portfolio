@@ -9,11 +9,11 @@
         <%# account icon image %>
         <%# <div>account icon</div> %>
         <div class="account-info__basics">
-          <div class="account-info__name"><%= @member.name %></div>
-          <div class="account-info__id">@<%= @member.slug %></div>
+          <div class="account-info__name"><%= current_user.member.name %></div>
+          <div class="account-info__id">@<%= current_user.member.slug%></div> 
         </div>
         <div>
-          <%= @member.intro %>
+          <%= current_user.member.intro %>
         </div>
       </div>
     </div>

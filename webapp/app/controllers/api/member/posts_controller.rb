@@ -4,7 +4,7 @@ class Api::Member::PostsController < Api::Member::Base
   def show
     page = params[:page].to_i
     size = params[:size].to_i
-    posts = current_user.role.posts.not_reply
+    posts = current_user.member.posts.not_reply
     @posts = posts.offset(size * page).limit(size)
   end
 

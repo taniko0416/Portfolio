@@ -16,8 +16,8 @@
       </div>
 
       <div class="our-post-lists__footer">
-        <span v-text="'XXX'"></span> comments 
-        <span v-text="'XXX'"></span> likes
+        <!-- <span v-text="'XXX'"></span> comments  -->
+        <!-- <span v-text="'XXX'"></span> likes -->
       </div>
 
     </div>

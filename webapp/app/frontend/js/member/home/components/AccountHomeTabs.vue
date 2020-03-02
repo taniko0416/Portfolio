@@ -4,8 +4,8 @@
       <b-tab-item label="Posts" icon="pencil">
         <our-post-lists></our-post-lists>
       </b-tab-item>
-      <b-tab-item label="Threads" icon="forum">会話のある投稿が表示されます。</b-tab-item>
-      <b-tab-item label="Likes" icon="thumb-up">あなたがいいねした投稿が表示されます。</b-tab-item>
+      <b-tab-item label="Threads" icon="forum">【準備中】会話のある投稿が表示されます。</b-tab-item>
+      <b-tab-item label="Likes" icon="thumb-up">【準備中】あなたがいいねした投稿が表示されます。</b-tab-item>
     </b-tabs>
   </section>
 </template>
