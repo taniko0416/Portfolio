@@ -10,7 +10,7 @@ class Api::Member::PostsController < Api::Member::Base
 
   def create
     content = params[:post][:content]
-    post = current_user.role.posts.build(content: content)
+    post = current_user.member.posts.build(content: content)
 
     if post.save
       render json: nil, status: :ok

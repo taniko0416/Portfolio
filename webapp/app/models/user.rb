@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   # belongs_to :role, polymorphic: true, dependent: :destroy, optional: true
 
-  
+  validates :email, uniqueness: true
+
   before_create :set_default_role_type
   
   private
