@@ -14,6 +14,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     super
+    @user = User.last
+    default_post = @user.set_default_info
   end
 
   # GET /resource/edit
