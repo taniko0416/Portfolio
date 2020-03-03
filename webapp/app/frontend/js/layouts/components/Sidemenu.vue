@@ -1,7 +1,7 @@
 <template>
   <b-menu class="is-narrow-mobile is-hidden-mobile">
 
-    <b-menu-list label="Menu">
+    <b-menu-list label="サイドバーは準備中">
       <!-- <b-menu-item icon="information-outline" label="Info"></b-menu-item> -->
 
       <!-- <b-menu-item icon="settings" :active="isActive" :expanded="isActive" @click="isActive = !isActive"> -->

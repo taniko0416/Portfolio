@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_070311) do
+ActiveRecord::Schema.define(version: 2020_03_02_042510) do
 
   create_table "likes", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci", force: :cascade do |t|
     t.bigint "post_id", null: false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 2020_01_19_070311) do
     t.date "birthday"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["name"], name: "index_members_on_name", unique: true
     t.index ["slug"], name: "index_members_on_slug", unique: true
   end

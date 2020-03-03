@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
   root to: "member/home#show"
 
+  # get 'member/:id', to: 'member#show'
+  devise_scope :user do
+    get 'sign_out', to: 'devise/sessions#destroy'
+  end
+
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
   }
 
   scope module: :member do

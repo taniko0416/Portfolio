@@ -16,8 +16,8 @@
       </div>
 
       <div class="our-post-lists__footer">
-        <span v-text="'XXX'"></span> comments 
-        <span v-text="'XXX'"></span> likes
+        <!-- <span v-text="'XXX'"></span> comments  -->
+        <!-- <span v-text="'XXX'"></span> likes -->
       </div>
 
     </div>
@@ -51,7 +51,10 @@ export default {
         size: pageSize,
       };
       Model.get('/member/posts', params).then( ({ data }) => {
-        if (data.hits.length) {
+        if (data.hits.length < 5) {
+          this.list.push(...data.hits);
+          $state.complete();
+        } else if (data.hits.length <= 5) {
           this.list.push(...data.hits);
           $state.loaded();
         } else {
