@@ -51,7 +51,10 @@ export default {
         size: pageSize,
       };
       Model.get('/member/posts', params).then( ({ data }) => {
-        if (data.hits.length) {
+        if (data.hits.length < 5) {
+          this.list.push(...data.hits);
+          $state.complete();
+        } else if (data.hits.length <= 5) {
           this.list.push(...data.hits);
           $state.loaded();
         } else {
