@@ -11,11 +11,6 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   before_create :set_default_role_type
 
-  def set_default_member_intro
-    @member = Member.last
-    update = @member.update(intro: "【準備中】自己紹介文を記入する場所です")
-  end
-
   def set_default_info
     @member = Member.last
     member = Member.last
